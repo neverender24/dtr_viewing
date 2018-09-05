@@ -66,10 +66,6 @@
 		<band height="115" splitType="Stretch">
 			<elementGroup>
 				<image>
-					<reportElement x="232" y="79" width="61" height="19" uuid="63437600-7f98-4287-9a08-2344e7c29bca"/>
-					<imageExpression><![CDATA["comval-2-final_01_02.png"]]></imageExpression>
-				</image>
-				<image>
 					<reportElement x="27" y="96" width="266" height="19" uuid="2ba68be4-032e-4653-b978-4edd54fd9f31"/>
 					<imageExpression><![CDATA["E:\\xampp\\htdocs\\portal\\public\\reports\\images\\comval-1-final_06.png"]]></imageExpression>
 				</image>
@@ -91,7 +87,7 @@
 			<elementGroup>
 				<image>
 					<reportElement x="529" y="79" width="61" height="19" uuid="5ea99a60-18c2-4486-a934-3845fd69745c"/>
-					<imageExpression><![CDATA["..\\..\\..\\..\\..\\..\\..\\comval-2-final_01_02.png"]]></imageExpression>
+					<imageExpression><![CDATA["E:\\xampp\\htdocs\\portal\\public\\reports\\images\\comval-2-final_01_02.png"]]></imageExpression>
 				</image>
 				<image>
 					<reportElement x="324" y="96" width="266" height="19" uuid="e01a92fd-c0f1-4f5f-b3d3-01736cf4582d"/>
@@ -112,6 +108,10 @@
 					<text><![CDATA[Civil Service Form No. 48]]></text>
 				</staticText>
 			</elementGroup>
+			<image>
+				<reportElement x="232" y="79" width="61" height="19" uuid="0de6af50-4b6a-4328-9d68-f1df11216411"/>
+				<imageExpression><![CDATA["E:\\xampp\\htdocs\\portal\\public\\reports\\images\\comval-2-final_01_02.png"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
