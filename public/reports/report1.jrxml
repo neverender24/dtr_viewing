@@ -1,0 +1,794 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="612" pageHeight="792" columnWidth="612" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="c5f16e15-cf5f-4316-9805-9dbfc6d55fe8">
+	<property name="ireport.zoom" value="1.4641000000000057"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="style1"/>
+	<parameter name="title" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fyear" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fmonth" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="taman" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select dtr.fempidno,dtr.fdate,famin,famout,fpmin,fpmout,dtr.funder,fremks,FLAST,FFIRST from dtr left join employee on dtr.fempidno=employee.fempidno where dtr.fempidno = $P{title} and year(dtr.fdate)=$P{fyear} and month(dtr.fdate)=$P{fmonth}]]>
+	</queryString>
+	<field name="fempidno" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fdate" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="famin" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="famout" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fpmin" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fpmout" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="funder" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fremks" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FLAST" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FFIRST" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="OB" class="java.lang.Integer" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{fremks}.substring(0,2)=="OB" ? 1 : 0]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="Leave" class="java.lang.Integer" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{fremks}.trim()=="LEAVE" ? 1 : 0]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<variable name="UT" class="java.lang.Integer" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{funder}]]></variableExpression>
+		<initialValueExpression><![CDATA[]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="115" splitType="Stretch">
+			<elementGroup>
+				<image>
+					<reportElement x="232" y="79" width="61" height="19" uuid="63437600-7f98-4287-9a08-2344e7c29bca"/>
+					<imageExpression><![CDATA["comval-2-final_01_02.png"]]></imageExpression>
+				</image>
+				<image>
+					<reportElement x="27" y="96" width="266" height="19" uuid="2ba68be4-032e-4653-b978-4edd54fd9f31"/>
+					<imageExpression><![CDATA["E:\\xampp\\htdocs\\portal\\public\\reports\\images\\comval-1-final_06.png"]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement stretchType="RelativeToBandHeight" x="99" y="51" width="176" height="37" uuid="01a01636-3f74-4ee9-9cad-99dd14c7baa7"/>
+					<textElement textAlignment="Justified">
+						<font size="17"/>
+					</textElement>
+					<text><![CDATA[DAILY TIME RECORD]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="26" y="11" width="125" height="20" uuid="8f046401-716b-4261-bca9-d3423fced80b"/>
+					<textElement>
+						<font fontName="Arial Narrow" size="12"/>
+					</textElement>
+					<text><![CDATA[Civil Service Form No. 48]]></text>
+				</staticText>
+			</elementGroup>
+			<elementGroup>
+				<image>
+					<reportElement x="529" y="79" width="61" height="19" uuid="5ea99a60-18c2-4486-a934-3845fd69745c"/>
+					<imageExpression><![CDATA["..\\..\\..\\..\\..\\..\\..\\comval-2-final_01_02.png"]]></imageExpression>
+				</image>
+				<image>
+					<reportElement x="324" y="96" width="266" height="19" uuid="e01a92fd-c0f1-4f5f-b3d3-01736cf4582d"/>
+					<imageExpression><![CDATA["E:\\xampp\\htdocs\\portal\\public\\reports\\images\\comval-1-final_06.png"]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement stretchType="RelativeToBandHeight" x="396" y="51" width="183" height="37" uuid="8fcf62f5-3875-4f27-ba60-cc06da3c00a7"/>
+					<textElement textAlignment="Justified">
+						<font size="17"/>
+					</textElement>
+					<text><![CDATA[DAILY TIME RECORD]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="323" y="11" width="125" height="20" uuid="e98240af-e3be-4882-bc4e-28bf673465a9"/>
+					<textElement>
+						<font fontName="Arial Narrow" size="12"/>
+					</textElement>
+					<text><![CDATA[Civil Service Form No. 48]]></text>
+				</staticText>
+			</elementGroup>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="41" splitType="Stretch">
+			<elementGroup>
+				<textField>
+					<reportElement x="245" y="0" width="30" height="14" uuid="f805fb8d-54bb-46fd-b7d9-d14a2e8fa3a4"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{fempidno}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="27" y="0" width="45" height="14" uuid="068c7bff-7067-420b-91b6-c50ba4648581"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="9"/>
+					</textElement>
+					<text><![CDATA[Name]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="185" y="26" width="90" height="14" uuid="4e18a43c-2a7b-44ca-bf98-54f0fdbb2627"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="9"/>
+					</textElement>
+					<text><![CDATA[Saturdays:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="214" y="0" width="31" height="14" uuid="122d6a35-ce64-4e2b-959d-4bfcafba5075"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="9"/>
+					</textElement>
+					<text><![CDATA[ID No.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="185" y="12" width="108" height="14" uuid="8315de35-bd11-4245-ba63-556125fff074"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="9"/>
+					</textElement>
+					<text><![CDATA[Regular Days: 8am-5pm]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="27" y="26" width="185" height="14" uuid="53055247-1f23-42c0-8727-019f99ab5138"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="9"/>
+					</textElement>
+					<text><![CDATA[Official Hour for Arrival and Departure]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="27" y="12" width="72" height="14" uuid="8016ea16-a96f-4342-8e1d-54a75be74eba"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="9"/>
+					</textElement>
+					<text><![CDATA[For the Month of ]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="56" y="0" width="139" height="14" uuid="bcfcdd2f-41c9-43aa-9f99-348625f373d8"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{FFIRST}+" "+$F{FLAST}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="97" y="12" width="97" height="14" uuid="3180f824-7bdc-41e8-86b3-cf195bae40e0"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new SimpleDateFormat("MMMMM yyyy").format($F{fdate}).toString().toUpperCase()]]></textFieldExpression>
+				</textField>
+			</elementGroup>
+			<elementGroup>
+				<textField>
+					<reportElement x="544" y="0" width="30" height="14" uuid="f278203a-ef5c-488e-afe7-c9dc8ae4ce11"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{fempidno}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="326" y="0" width="45" height="14" uuid="f33f5fdd-0e2b-4032-8300-96b734b6ce06"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="9"/>
+					</textElement>
+					<text><![CDATA[Name]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="484" y="26" width="90" height="14" uuid="060e3d78-5ad4-4a5a-a4e0-77f916f4d85c"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="9"/>
+					</textElement>
+					<text><![CDATA[Saturdays:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="513" y="0" width="31" height="14" uuid="dc75e732-e0c2-4502-ab65-7ac52cc15590"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="9"/>
+					</textElement>
+					<text><![CDATA[ID No.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="484" y="12" width="108" height="14" uuid="16d48817-1fe0-4693-94f9-b2beec4905b8"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="9"/>
+					</textElement>
+					<text><![CDATA[Regular Days: 8am-5pm]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="326" y="26" width="185" height="14" uuid="f25a3de6-30f6-44b7-bc5c-de232f767b70"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="9"/>
+					</textElement>
+					<text><![CDATA[Official Hour for Arrival and Departure]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="326" y="12" width="72" height="14" uuid="4f8dc608-2155-43f1-9f24-2bd50f5869d5"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="9"/>
+					</textElement>
+					<text><![CDATA[For the Month of ]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="355" y="0" width="139" height="14" uuid="871c9422-51f7-47fd-b8dc-4163d83e2374"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{FFIRST}+" "+$F{FLAST}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="396" y="12" width="97" height="14" uuid="b6e02971-408a-4177-8a63-e1035e4cb508"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new SimpleDateFormat("MMMMM yyyy").format($F{fdate}).toString().toUpperCase()]]></textFieldExpression>
+				</textField>
+			</elementGroup>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="15" splitType="Stretch">
+			<elementGroup>
+				<staticText>
+					<reportElement x="58" y="2" width="30" height="12" uuid="fc167835-1ee5-4cbc-aa91-534c3bb418f6"/>
+					<textElement>
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<text><![CDATA[AM-in]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="93" y="2" width="30" height="12" uuid="b1e41e3a-1ce0-4bf1-9759-3fe642244d96"/>
+					<textElement>
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<text><![CDATA[AM-out]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="26" y="2" width="30" height="12" uuid="5082595f-be50-4733-be52-78691aa37ada"/>
+					<textElement>
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<text><![CDATA[Day]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="238" y="2" width="55" height="12" uuid="8b94d61f-6cd4-4be5-ba97-acc4a22172d2"/>
+					<textElement>
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<text><![CDATA[Remarks]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="190" y="2" width="40" height="12" uuid="47cc2b01-aacb-4fb3-9ce3-d876d656b123"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<text><![CDATA[Undertime]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="129" y="2" width="30" height="12" uuid="fda82743-5982-47d6-9045-8967d458d932"/>
+					<textElement>
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<text><![CDATA[PM-in]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="165" y="2" width="30" height="12" uuid="1fa8dee1-b5ff-4c28-b6fd-8349a94ed2ee"/>
+					<textElement>
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<text><![CDATA[PM-out]]></text>
+				</staticText>
+				<line>
+					<reportElement x="26" y="2" width="267" height="1" uuid="684c48e4-0552-492d-b682-f762f1321d6a"/>
+				</line>
+				<line>
+					<reportElement x="26" y="14" width="267" height="1" uuid="aa6a7212-c218-41a8-adcc-0c6fdf103326"/>
+				</line>
+			</elementGroup>
+			<elementGroup>
+				<staticText>
+					<reportElement x="358" y="1" width="30" height="12" uuid="573414df-7a71-4a3f-bf02-ca140514610f"/>
+					<textElement>
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<text><![CDATA[AM-in]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="393" y="1" width="30" height="12" uuid="0f1c2493-721d-449b-a81d-580b8f1c193e"/>
+					<textElement>
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<text><![CDATA[AM-out]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="326" y="1" width="30" height="12" uuid="511f5678-30b8-44ab-89ac-590e00a46bc4"/>
+					<textElement>
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<text><![CDATA[Day]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="538" y="1" width="55" height="12" uuid="d9ce2551-1f76-4c29-9221-847732fb8ef5"/>
+					<textElement>
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<text><![CDATA[Remarks]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="490" y="1" width="40" height="12" uuid="6e32369d-cd89-446d-ad8f-7ecead83605c"/>
+					<textElement textAlignment="Right">
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<text><![CDATA[Undertime]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="429" y="1" width="30" height="12" uuid="89497198-f3d6-4afc-abf1-1f0341767053"/>
+					<textElement>
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<text><![CDATA[PM-in]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="465" y="1" width="30" height="12" uuid="06610256-7f35-4f57-8b9f-eab991bfac6c"/>
+					<textElement>
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<text><![CDATA[PM-out]]></text>
+				</staticText>
+				<line>
+					<reportElement x="326" y="1" width="267" height="1" uuid="179a22ea-271f-42b2-89b6-46bf1b66a5d0"/>
+				</line>
+				<line>
+					<reportElement x="326" y="13" width="267" height="1" uuid="af314fc6-9a6c-4b45-a191-5f5c61ebeecf"/>
+				</line>
+			</elementGroup>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<elementGroup>
+				<textField>
+					<reportElement x="58" y="2" width="30" height="12" uuid="51c92583-3faa-479f-a01c-6fb9f7aa8adb">
+						<printWhenExpression><![CDATA[$F{fdate}.getDate()>15 && ($P{taman} == "0, 31" ||$P{taman} == "16, 31"  )]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{famin}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="93" y="2" width="30" height="12" uuid="12c201ee-9bc1-49ac-ac5f-639e317a24f9">
+						<printWhenExpression><![CDATA[$F{fdate}.getDate()<=15 && ($P{taman} == "0, 31" ||$P{taman} == "0, 15"  )]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{famout}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="198" y="2" width="40" height="12" uuid="90dc2bf7-7d41-4fd0-89db-01d610a37e87">
+						<printWhenExpression><![CDATA[$F{fdate}.getDate()<=15 && ($P{taman} == "0, 31" ||$P{taman} == "0, 15"  )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{funder}==0?"":$F{funder}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="26" y="2" width="30" height="12" uuid="9bdb554d-6379-451b-b88c-187853740264"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{fdate}.getDate()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="129" y="2" width="30" height="12" uuid="90077346-0bff-46ec-9a5b-239405cd65a4">
+						<printWhenExpression><![CDATA[$F{fdate}.getDate()<=15 && ($P{taman} == "0, 31" ||$P{taman} == "0, 15"  )]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{fpmin}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="165" y="2" width="30" height="12" uuid="4d5652cc-bb78-4073-9980-ed3cfdb23522">
+						<printWhenExpression><![CDATA[$F{fdate}.getDate()<=15 && ($P{taman} == "0, 31" ||$P{taman} == "0, 15"  )]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{fpmout}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="238" y="2" width="74" height="12" uuid="bb03ff28-da3f-4659-b283-3b8d9cc96717">
+						<printWhenExpression><![CDATA[$F{fdate}.getDate()<=15 && ($P{taman} == "0, 31" ||$P{taman} == "0, 15"  )]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial Narrow" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{fremks}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="58" y="2" width="30" height="12" uuid="4a15acf1-0696-4eb0-a599-69ea41ca244b">
+						<printWhenExpression><![CDATA[$F{fdate}.getDate()<=15 && ($P{taman} == "0, 31" ||$P{taman} == "0, 15"  )]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{famin}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="93" y="2" width="30" height="12" uuid="0c67e7fb-9bd1-43c2-b43c-f6a6505cf0fa">
+						<printWhenExpression><![CDATA[$F{fdate}.getDate()>15 && ($P{taman} == "0, 31" ||$P{taman} == "16, 31"  )]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{famout}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="129" y="2" width="30" height="12" uuid="5ca0c0ab-8713-45a8-ac42-b623553b6d7d">
+						<printWhenExpression><![CDATA[$F{fdate}.getDate()>15 && ($P{taman} == "0, 31" ||$P{taman} == "16, 31"  )]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{fpmin}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="165" y="2" width="30" height="12" uuid="aa34dfbf-6992-4168-af1c-2d6aec1cb3b1">
+						<printWhenExpression><![CDATA[$F{fdate}.getDate()>15 && ($P{taman} == "0, 31" ||$P{taman} == "16, 31"  )]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{fpmout}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="198" y="2" width="40" height="12" uuid="e11e3697-b192-4068-b710-6a5f44e0e8bc">
+						<printWhenExpression><![CDATA[$F{fdate}.getDate()>15 && ($P{taman} == "0, 31" ||$P{taman} == "16, 31"  )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{funder}==0?"":$F{funder}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="238" y="2" width="74" height="12" uuid="8ce4e017-cac2-43d1-94a1-677f45a49a15">
+						<printWhenExpression><![CDATA[$F{fdate}.getDate()>15 && ($P{taman} == "0, 31" ||$P{taman} == "16, 31"  )]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial Narrow" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{fremks}]]></textFieldExpression>
+				</textField>
+			</elementGroup>
+			<elementGroup>
+				<textField>
+					<reportElement x="358" y="2" width="30" height="12" uuid="7d38c936-4228-4cff-893a-ac81202a1f76">
+						<printWhenExpression><![CDATA[$F{fdate}.getDate()>15 && ($P{taman} == "0, 31" ||$P{taman} == "16, 31"  )]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{famin}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="393" y="2" width="30" height="12" uuid="48397dfe-5874-4c80-a3ee-8437e263c511">
+						<printWhenExpression><![CDATA[$F{fdate}.getDate()<=15 && ($P{taman} == "0, 31" ||$P{taman} == "0, 15"  )]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{famout}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="498" y="2" width="40" height="12" uuid="e6cdcbda-b42b-4053-bc87-cf422055e4f2">
+						<printWhenExpression><![CDATA[$F{fdate}.getDate()<=15 && ($P{taman} == "0, 31" ||$P{taman} == "0, 15"  )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{funder}==0?"":$F{funder}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="326" y="2" width="30" height="12" uuid="7195a008-3830-4cc0-9567-764508e9a150"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{fdate}.getDate()]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="429" y="2" width="30" height="12" uuid="cacf24b0-3806-4154-a98f-ed2465310e35">
+						<printWhenExpression><![CDATA[$F{fdate}.getDate()<=15 && ($P{taman} == "0, 31" ||$P{taman} == "0, 15"  )]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{fpmin}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="465" y="2" width="30" height="12" uuid="75e98f31-1b54-41b9-8ad7-3bd70c356207">
+						<printWhenExpression><![CDATA[$F{fdate}.getDate()<=15 && ($P{taman} == "0, 31" ||$P{taman} == "0, 15"  )]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{fpmout}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="538" y="2" width="74" height="12" uuid="2982035d-f0ca-4ee8-a93c-540101105708">
+						<printWhenExpression><![CDATA[$F{fdate}.getDate()<=15 && ($P{taman} == "0, 31" ||$P{taman} == "0, 15"  )]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial Narrow" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{fremks}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="358" y="2" width="30" height="12" uuid="65b43198-f177-4748-9296-b2c63c938851">
+						<printWhenExpression><![CDATA[$F{fdate}.getDate()<=15 && ($P{taman} == "0, 31" ||$P{taman} == "0, 15"  )]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{famin}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="393" y="2" width="30" height="12" uuid="91019ab2-4a33-4ed8-8186-a135fcf80fb4">
+						<printWhenExpression><![CDATA[$F{fdate}.getDate()>15 && ($P{taman} == "0, 31" ||$P{taman} == "16, 31"  )]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{famout}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="429" y="2" width="30" height="12" uuid="a86b49cc-e299-45b1-9109-e1df056c3bf0">
+						<printWhenExpression><![CDATA[$F{fdate}.getDate()>15 && ($P{taman} == "0, 31" ||$P{taman} == "16, 31"  )]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{fpmin}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="465" y="2" width="30" height="12" uuid="b5892263-d786-466f-8d17-5294d8255541">
+						<printWhenExpression><![CDATA[$F{fdate}.getDate()>15 && ($P{taman} == "0, 31" ||$P{taman} == "16, 31"  )]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{fpmout}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="498" y="2" width="40" height="12" uuid="efd68975-aa95-4fdc-b6ad-dcda970fc448">
+						<printWhenExpression><![CDATA[$F{fdate}.getDate()>15 && ($P{taman} == "0, 31" ||$P{taman} == "16, 31"  )]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{funder}==0?"":$F{funder}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="538" y="2" width="74" height="12" uuid="c9497a0b-bb4c-43d3-954f-06e6e29e3951">
+						<printWhenExpression><![CDATA[$F{fdate}.getDate()>15 && ($P{taman} == "0, 31" ||$P{taman} == "16, 31"  )]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial Narrow" size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{fremks}]]></textFieldExpression>
+				</textField>
+			</elementGroup>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="120" splitType="Stretch">
+			<elementGroup>
+				<line>
+					<reportElement x="26" y="2" width="267" height="1" uuid="c22fc1dd-c931-48f6-aa23-e782376e22e2"/>
+				</line>
+				<staticText>
+					<reportElement x="26" y="16" width="267" height="40" uuid="c8d2a197-1bc4-4719-9c66-272bab2732b3"/>
+					<textElement>
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<text><![CDATA[             I herby certify on my honor that the above is true and correct report of the hours of worked performed, record of wich was made daily at the time of arrival and departure from the office.]]></text>
+				</staticText>
+				<line>
+					<reportElement x="71" y="74" width="175" height="1" uuid="f4f43ab3-8b84-42ce-b777-79df65aa3c36"/>
+				</line>
+				<line>
+					<reportElement x="71" y="95" width="175" height="1" uuid="eabef07d-6676-49c1-98f1-7eb86102d67a"/>
+				</line>
+				<staticText>
+					<reportElement x="121" y="95" width="74" height="20" uuid="238fedd4-a18a-4808-964e-8fdbe6f4fd12"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial Narrow" size="10"/>
+					</textElement>
+					<text><![CDATA[In-Charge]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="88" y="4" width="27" height="14" uuid="6785c774-61d7-42c9-a49c-8a43d0ee20ff"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{OB}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="73" y="4" width="15" height="14" uuid="c12dd6d8-782a-4fe2-a743-ad450670577f"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<text><![CDATA[OB]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="149" y="4" width="29" height="14" uuid="84548796-40f7-4834-ace0-ca7d72d83e18">
+						<printWhenExpression><![CDATA[$F{fdate}.getDate()>15 && ($P{taman} == "0, 31" ||$P{taman} == "15, 31"  )]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{Leave}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="212" y="4" width="63" height="14" uuid="e6c634ab-ee3f-422b-90c7-8e823db369df"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[((int)Math.floor($V{UT}/60)).toString()+"h "+($V{UT}%60).toString()+"m"]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="134" y="4" width="15" height="14" uuid="fbba31b8-d528-4c68-bb42-f578dac8f95f"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<text><![CDATA[LV]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="197" y="4" width="15" height="14" uuid="f1b99b76-6fd7-4581-88d4-cf0e54ed9566"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<text><![CDATA[UT]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="93" y="60" width="139" height="14" uuid="07482f71-951e-4f13-898d-3261b8161fcf"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{FFIRST}+" "+$F{FLAST}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="512" y="4" width="63" height="14" uuid="5efdb552-a5e0-476d-b082-28f447b75fe5"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[((int)Math.floor($V{UT}/60)).toString()+"h "+($V{UT}%60).toString()+"m"]]></textFieldExpression>
+				</textField>
+			</elementGroup>
+			<elementGroup>
+				<line>
+					<reportElement x="326" y="2" width="267" height="1" uuid="97d76f29-647c-4d3b-b670-107278b19d19"/>
+				</line>
+				<staticText>
+					<reportElement x="326" y="16" width="267" height="40" uuid="82c3974c-376e-4ffb-87e9-b7cd45bef360"/>
+					<textElement>
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<text><![CDATA[             I herby certify on my honor that the above is true and correct report of the hours of worked performed, record of wich was made daily at the time of arrival and departure from the office.]]></text>
+				</staticText>
+				<line>
+					<reportElement x="371" y="74" width="175" height="1" uuid="67afb36e-9268-4a10-96a6-d38ba462e228"/>
+				</line>
+				<line>
+					<reportElement x="371" y="95" width="175" height="1" uuid="126e4938-aedb-4e5c-83b7-ec71c61c2573"/>
+				</line>
+				<staticText>
+					<reportElement x="421" y="95" width="74" height="20" uuid="72270357-2eae-4356-bf88-883054e64815"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial Narrow" size="10"/>
+					</textElement>
+					<text><![CDATA[In-Charge]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="388" y="4" width="27" height="14" uuid="494fbb31-3b6a-415b-bbf7-b3f34ca0188c"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{OB}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="373" y="4" width="15" height="14" uuid="a6f921a6-6457-4935-8a33-fa0348da8b97"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<text><![CDATA[OB]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="449" y="4" width="29" height="14" uuid="3f9f4623-614c-4cb2-8de2-d82b4e433c7c"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{Leave}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="434" y="4" width="15" height="14" uuid="a637aae9-4c22-4a8e-b41e-f1a8cd65a774"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<text><![CDATA[LV]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="497" y="4" width="15" height="14" uuid="82700711-2e3d-4402-abea-e083a43e9427"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<text><![CDATA[UT]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="393" y="60" width="139" height="14" uuid="75a8846a-80ba-41c1-a489-b658878ebcf5"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{FFIRST}+" "+$F{FLAST}]]></textFieldExpression>
+				</textField>
+			</elementGroup>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<elementGroup>
+				<image>
+					<reportElement x="24" y="0" width="269" height="19" uuid="af1fb756-6cb9-41dd-9217-bf9d7dbfdcf1"/>
+					<imageExpression><![CDATA["E:\\xampp\\htdocs\\portal\\public\\reports\\images\\comval-1-final_06.png"]]></imageExpression>
+				</image>
+				<textField>
+					<reportElement x="26" y="7" width="97" height="12" uuid="d0cf19ec-6306-4508-b9a0-5bad61ffefd3"/>
+					<textElement>
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new Date()]]></textFieldExpression>
+				</textField>
+			</elementGroup>
+			<elementGroup>
+				<image>
+					<reportElement x="326" y="0" width="269" height="19" uuid="0aeeacd4-138a-4bb6-997a-18f7ca265c38"/>
+					<imageExpression><![CDATA["E:\\xampp\\htdocs\\portal\\public\\reports\\images\\comval-1-final_06.png"]]></imageExpression>
+				</image>
+				<textField>
+					<reportElement x="328" y="7" width="97" height="12" uuid="5ba44ee6-3426-4361-bbe5-c1152b623e59"/>
+					<textElement>
+						<font fontName="Arial Narrow" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new Date()]]></textFieldExpression>
+				</textField>
+			</elementGroup>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="5" splitType="Stretch"/>
+	</summary>
+</jasperReport>

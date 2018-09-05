@@ -1,0 +1,91 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "vue-pdf",
+        "scope": null,
+        "escapedName": "vue-pdf",
+        "name": "vue-pdf",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "E:\\xampp\\htdocs\\portal"
+    ]
+  ],
+  "_from": "vue-pdf@latest",
+  "_id": "vue-pdf@3.1.2",
+  "_inCache": true,
+  "_location": "/vue-pdf",
+  "_nodeVersion": "8.9.1",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/vue-pdf-3.1.2.tgz_1515450603391_0.6627098647877574"
+  },
+  "_npmUser": {
+    "name": "franck.freiburger",
+    "email": "public@franck-freiburger.com"
+  },
+  "_npmVersion": "5.5.1",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "vue-pdf",
+    "scope": null,
+    "escapedName": "vue-pdf",
+    "name": "vue-pdf",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/vue-pdf/-/vue-pdf-3.1.2.tgz",
+  "_shasum": "ac6edb147db039ff6fcc4ed644d2d95115f35118",
+  "_shrinkwrap": null,
+  "_spec": "vue-pdf",
+  "_where": "E:\\xampp\\htdocs\\portal",
+  "author": {
+    "name": "Franck FREIBURGER"
+  },
+  "bugs": {
+    "url": "https://github.com/FranckFreiburger/vue-pdf/issues"
+  },
+  "dependencies": {
+    "pdfjs-dist": "^2.0.250",
+    "vue-resize-sensor": "^2.0.0"
+  },
+  "description": "vue.js pdf viewer",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "integrity": "sha512-O71PLAXY4yyW2Kuh4s9pm/ba0CiedOK96VbDv8WLb6HNPybXL/Pw5Kq0x0u+Z4LauN8gsk3j5eFDebzpV5S/tA==",
+    "shasum": "ac6edb147db039ff6fcc4ed644d2d95115f35118",
+    "tarball": "https://registry.npmjs.org/vue-pdf/-/vue-pdf-3.1.2.tgz"
+  },
+  "gitHead": "0065c902a78a739ee8f0490f64475cdcee852f78",
+  "homepage": "https://github.com/FranckFreiburger/vue-pdf#readme",
+  "keywords": [
+    "vue.js",
+    "pdf",
+    "viewer"
+  ],
+  "license": "MIT",
+  "main": "src/pdf.vue",
+  "maintainers": [
+    {
+      "name": "franck.freiburger",
+      "email": "public@franck-freiburger.com"
+    }
+  ],
+  "name": "vue-pdf",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FranckFreiburger/vue-pdf.git"
+  },
+  "scripts": {},
+  "version": "3.1.2"
+}
