@@ -17,6 +17,14 @@ class UsersController extends Controller
         return view('auth.change_password');
     }
 
+    public function getUser()
+    {
+        return response()->json(array(
+            'ao' => auth()->user()->ao,
+            'id'=> auth()->user()->FEMPIDNO 
+        ));
+    }
+
     public function updatePassword()
     {
         $old     = request()->get('old_password');

@@ -1,18 +1,18 @@
 <template>
 		<div>
 			<div class="loading" v-if="loading">Loading&#8230;</div>
-			<div class="col-md-8 col-md-offset-2">
+			<div class="col-md-8 col-sm-12 col-md-offset-2">
 				<div class="form-group col-md-2">
-					<el-input placeholder="Month" max="2" v-model="months" @change="setMonth" autofocus="true"></el-input>
+					<el-input placeholder="Month" max="2" v-model="months" @change="getData" autofocus="true"></el-input>
 				</div>
 				<div class="form-group col-md-2">
-					<el-input placeholder="Year" max="4" v-model="years" @change="setYear"></el-input>
+					<el-input placeholder="Year" max="4" v-model="years" @change="getData"></el-input>
+				</div>
+				<div class="form-group col-md-2" v-if="ao==1">
+					<el-input placeholder="Id" max="4" v-model="ids" @change="getData"></el-input>
 				</div>
 				<div class="form-group col-md-2">
-					<el-input placeholder="Id" max="4" v-model="ids" @change="setIds"></el-input>
-				</div>
-				<div class="form-group col-md-2">
-					<el-select v-model="limit" placeholder="Period" @change="setPeriod">
+					<el-select v-model="limit" placeholder="Period" @change="getData">
 						<el-option
 							v-for="item in options"
 							:key="item.value"
@@ -22,13 +22,20 @@
 					</el-select>
 				</div>
 				
-				<div class="form-group col-md-2">
-						<el-button type="primary" @click="setPeriod()">Display</el-button>
-						<el-button type="success" @click="printer()">Print</el-button>
+				<div class="form-group col-md-4">
+						<el-button-group>
+							<el-button type="primary" icon="el-icon-check" @click="getData">Display</el-button>
+							<el-button type="info" icon="el-icon-printer" @click="printer()">Print</el-button>
+						</el-button-group>
 				</div>
-				<div class="form-group col-md-12" v-if="name">
-					<span v-if="loading"><i class="text-primary fa fa-circle-o-notch fa-spin fa-1x fa-fw"></i></span>
-					<label for="first_name" class="column is-2">Name :</label> {{ name.FLAST }}, {{ name.FFIRST }} {{ name.FMI }}
+				
+				<div class="row" v-if="ao==1">
+					<div class="form-group col-md-12" v-if="name">
+						<div class="alert alert-success" role="alert">
+							<label for="first_name">Name :</label>
+									<p>{{ name.FLAST }}, {{ name.FFIRST }} {{ name.FMI }}</p>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="row">
@@ -50,7 +57,7 @@
 	      temp: '',
 	      years : '',
 	      months : '',
-	      ids : '',
+	      ids : 0,
 				name:null,
 				options: [{
           value: '0, 15',
@@ -62,53 +69,46 @@
           value: '0, 31',
           label: 'Month'
         }],
-        limit: ''
+				limit: '0, 31',
+				ao: 0
 	    }
-	  },
-	  mounted(){
-	  		this.getResults(this.years, this.months, this.ids, this.limit);
-	  },
+		},
+		created() {
+				this.loading = !this.loading
+				axios.get('get-user')
+				.then(response => {
+					this.loading = !this.loading
+					console.log(response)
+					this.ao = response.data.ao
+					this.ids = response.data.id
+				})
+		},
 	  methods:{
+				getResults(year, month, id, limit) {
+						this.loading = !this.loading
+						axios.post('getDtr',{
+								searchYear: year,
+								searchMonth: month,
+								searchId: id,
+								limit: limit,
+						})
+						.then(response => {
+							this.loading = !this.loading;
+							this.lists = response.data;
 
-	        getResults(year, month, id, limit) {
-	          this.loading = !this.loading
-	            axios.post('getDtr',{
-								 searchYear: year,
-								 searchMonth: month,
-								 searchId: id,
-								 limit: limit,
+							this.temp = this.lists.filter((item) => {
+								let string = String(item["fdate"])
+								return string.substring(8,10)
 							})
-	            .then(response => {
-	              this.loading = !this.loading;
-	              this.lists = response.data;
-
-	              this.temp = this.lists.filter((item) => {
-
-	              	let string = String(item["fdate"])
-	              		
-	              		return string.substring(8,10)
-	              })
-	            })
-	        },
-	        getEmployees(id){
-	        	axios.post('getEmployee', { searchId: id, })
-	        	.then(response => {
-	        	  this.name = response.data[0];
-	        	})
-	        },
-	  		setYear(){
-		  		this.getResults(this.years, this.months, this.ids, this.limit);
-		  		//this.$refs.ids.focus();
-	  		},
-	  		setMonth(){
-		  		this.getResults(this.years, this.months, this.ids, this.limit);
-		  		//this.$refs.years.focus();
-	  		},
-	  		setIds(){
-		  		this.getResults(this.years, this.months, this.ids, this.limit);
-		  		this.getEmployees(this.ids)
+						})
 				},
-				setPeriod(){
+				getEmployees(id){
+					axios.post('getEmployee', { searchId: id, })
+					.then(response => {
+						this.name = response.data[0];
+					})
+				},
+				getData(){
 		  		this.getResults(this.years, this.months, this.ids, this.limit);
 		  		this.getEmployees(this.ids)
 	  		},
@@ -124,8 +124,6 @@
 						 this.loading = !this.loading;
 						 window.open("/pdf") 
 	  			})
-
-	  			 
 	  		}      
 	    }
 	}

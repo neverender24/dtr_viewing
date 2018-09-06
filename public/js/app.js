@@ -48385,6 +48385,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -48399,7 +48406,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			temp: '',
 			years: '',
 			months: '',
-			ids: '',
+			ids: 0,
 			name: null,
 			options: [{
 				value: '0, 15',
@@ -48411,16 +48418,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				value: '0, 31',
 				label: 'Month'
 			}],
-			limit: ''
+			limit: '0, 31',
+			ao: 0
 		};
 	},
-	mounted: function mounted() {
-		this.getResults(this.years, this.months, this.ids, this.limit);
+	created: function created() {
+		var _this = this;
+
+		this.loading = !this.loading;
+		axios.get('get-user').then(function (response) {
+			_this.loading = !_this.loading;
+			console.log(response);
+			_this.ao = response.data.ao;
+			_this.ids = response.data.id;
+		});
 	},
 
 	methods: {
 		getResults: function getResults(year, month, id, limit) {
-			var _this = this;
+			var _this2 = this;
 
 			this.loading = !this.loading;
 			axios.post('getDtr', {
@@ -48429,42 +48445,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				searchId: id,
 				limit: limit
 			}).then(function (response) {
-				_this.loading = !_this.loading;
-				_this.lists = response.data;
+				_this2.loading = !_this2.loading;
+				_this2.lists = response.data;
 
-				_this.temp = _this.lists.filter(function (item) {
-
+				_this2.temp = _this2.lists.filter(function (item) {
 					var string = String(item["fdate"]);
-
 					return string.substring(8, 10);
 				});
 			});
 		},
 		getEmployees: function getEmployees(id) {
-			var _this2 = this;
+			var _this3 = this;
 
 			axios.post('getEmployee', { searchId: id }).then(function (response) {
-				_this2.name = response.data[0];
+				_this3.name = response.data[0];
 			});
 		},
-		setYear: function setYear() {
-			this.getResults(this.years, this.months, this.ids, this.limit);
-			//this.$refs.ids.focus();
-		},
-		setMonth: function setMonth() {
-			this.getResults(this.years, this.months, this.ids, this.limit);
-			//this.$refs.years.focus();
-		},
-		setIds: function setIds() {
-			this.getResults(this.years, this.months, this.ids, this.limit);
-			this.getEmployees(this.ids);
-		},
-		setPeriod: function setPeriod() {
+		getData: function getData() {
 			this.getResults(this.years, this.months, this.ids, this.limit);
 			this.getEmployees(this.ids);
 		},
 		printer: function printer() {
-			var _this3 = this;
+			var _this4 = this;
 
 			this.loading = !this.loading;
 			axios.post('printer', {
@@ -48473,7 +48475,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				cats: this.ids,
 				limit: this.limit
 			}).then(function (response) {
-				_this3.loading = !_this3.loading;
+				_this4.loading = !_this4.loading;
 				window.open("/pdf");
 			});
 		}
@@ -48496,14 +48498,14 @@ var render = function() {
       ? _c("div", { staticClass: "loading" }, [_vm._v("Loading…")])
       : _vm._e(),
     _vm._v(" "),
-    _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
+    _c("div", { staticClass: "col-md-8 col-sm-12 col-md-offset-2" }, [
       _c(
         "div",
         { staticClass: "form-group col-md-2" },
         [
           _c("el-input", {
             attrs: { placeholder: "Month", max: "2", autofocus: "true" },
-            on: { change: _vm.setMonth },
+            on: { change: _vm.getData },
             model: {
               value: _vm.months,
               callback: function($$v) {
@@ -48522,7 +48524,7 @@ var render = function() {
         [
           _c("el-input", {
             attrs: { placeholder: "Year", max: "4" },
-            on: { change: _vm.setYear },
+            on: { change: _vm.getData },
             model: {
               value: _vm.years,
               callback: function($$v) {
@@ -48535,24 +48537,26 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "form-group col-md-2" },
-        [
-          _c("el-input", {
-            attrs: { placeholder: "Id", max: "4" },
-            on: { change: _vm.setIds },
-            model: {
-              value: _vm.ids,
-              callback: function($$v) {
-                _vm.ids = $$v
-              },
-              expression: "ids"
-            }
-          })
-        ],
-        1
-      ),
+      _vm.ao == 1
+        ? _c(
+            "div",
+            { staticClass: "form-group col-md-2" },
+            [
+              _c("el-input", {
+                attrs: { placeholder: "Id", max: "4" },
+                on: { change: _vm.getData },
+                model: {
+                  value: _vm.ids,
+                  callback: function($$v) {
+                    _vm.ids = $$v
+                  },
+                  expression: "ids"
+                }
+              })
+            ],
+            1
+          )
+        : _vm._e(),
       _vm._v(" "),
       _c(
         "div",
@@ -48562,7 +48566,7 @@ var render = function() {
             "el-select",
             {
               attrs: { placeholder: "Period" },
-              on: { change: _vm.setPeriod },
+              on: { change: _vm.getData },
               model: {
                 value: _vm.limit,
                 callback: function($$v) {
@@ -48584,62 +48588,67 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "form-group col-md-2" },
+        { staticClass: "form-group col-md-4" },
         [
           _c(
-            "el-button",
-            {
-              attrs: { type: "primary" },
-              on: {
-                click: function($event) {
-                  _vm.setPeriod()
-                }
-              }
-            },
-            [_vm._v("Display")]
-          ),
-          _vm._v(" "),
-          _c(
-            "el-button",
-            {
-              attrs: { type: "success" },
-              on: {
-                click: function($event) {
-                  _vm.printer()
-                }
-              }
-            },
-            [_vm._v("Print")]
+            "el-button-group",
+            [
+              _c(
+                "el-button",
+                {
+                  attrs: { type: "primary", icon: "el-icon-check" },
+                  on: { click: _vm.getData }
+                },
+                [_vm._v("Display")]
+              ),
+              _vm._v(" "),
+              _c(
+                "el-button",
+                {
+                  attrs: { type: "info", icon: "el-icon-printer" },
+                  on: {
+                    click: function($event) {
+                      _vm.printer()
+                    }
+                  }
+                },
+                [_vm._v("Print")]
+              )
+            ],
+            1
           )
         ],
         1
       ),
       _vm._v(" "),
-      _vm.name
-        ? _c("div", { staticClass: "form-group col-md-12" }, [
-            _vm.loading
-              ? _c("span", [
-                  _c("i", {
-                    staticClass:
-                      "text-primary fa fa-circle-o-notch fa-spin fa-1x fa-fw"
-                  })
+      _vm.ao == 1
+        ? _c("div", { staticClass: "row" }, [
+            _vm.name
+              ? _c("div", { staticClass: "form-group col-md-12" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "alert alert-success",
+                      attrs: { role: "alert" }
+                    },
+                    [
+                      _c("label", { attrs: { for: "first_name" } }, [
+                        _vm._v("Name :")
+                      ]),
+                      _vm._v(" "),
+                      _c("p", [
+                        _vm._v(
+                          _vm._s(_vm.name.FLAST) +
+                            ", " +
+                            _vm._s(_vm.name.FFIRST) +
+                            " " +
+                            _vm._s(_vm.name.FMI)
+                        )
+                      ])
+                    ]
+                  )
                 ])
-              : _vm._e(),
-            _vm._v(" "),
-            _c(
-              "label",
-              { staticClass: "column is-2", attrs: { for: "first_name" } },
-              [_vm._v("Name :")]
-            ),
-            _vm._v(
-              " " +
-                _vm._s(_vm.name.FLAST) +
-                ", " +
-                _vm._s(_vm.name.FFIRST) +
-                " " +
-                _vm._s(_vm.name.FMI) +
-                "\n\t\t"
-            )
+              : _vm._e()
           ])
         : _vm._e()
     ]),

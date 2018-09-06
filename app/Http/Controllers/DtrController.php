@@ -40,7 +40,6 @@ class DtrController extends Controller
             $inject = 0;
         }
 
-
     	$dtr = Dtr::where(\DB::raw("YEAR(fdate)"), '=', $request->searchYear)
             ->where(\DB::raw("MONTH(fdate)"), '=', $request->searchMonth)
             ->where('fempidno','=',$request->searchId)
@@ -62,7 +61,11 @@ class DtrController extends Controller
 
     public function getEmployee(Request $request)
     {
-    	$dtr = Employee::where('FEMPIDNO', $request->searchId)->get();
+        if ($request->searchId == 0) {
+            $request['searchId'] = auth()->user()->FEMPIDNO;
+        }
+
+    	$dtr = User::where('FEMPIDNO', $request->searchId)->get();
 
     	return $dtr;
     }

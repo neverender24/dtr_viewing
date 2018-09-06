@@ -14,3 +14,4 @@ Route::get("pdf","DtrController@open_pdf");
 
 Route::get("change-password","UsersController@changePassword")->name('change-password');
 Route::post('update-password',"UsersController@updatePassword" );
+Route::get('get-user',"UsersController@getUser" );
