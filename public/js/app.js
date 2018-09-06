@@ -48415,10 +48415,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -48447,11 +48443,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			}],
 			limit: '0, 31',
 			ao: 0,
-			dialogVisible: false
+			dialogVisible: false,
+			is_mobile: false
 		};
 	},
 	created: function created() {
 		var _this = this;
+
+		if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+			this.is_mobile = true;
+		}
 
 		this.loading = !this.loading;
 		axios.get('get-user').then(function (response) {
@@ -48638,18 +48639,20 @@ var render = function() {
                   [_vm._v("Display")]
                 ),
                 _vm._v(" "),
-                _c(
-                  "el-button",
-                  {
-                    attrs: { type: "info", icon: "el-icon-printer" },
-                    on: {
-                      click: function($event) {
-                        _vm.printer()
-                      }
-                    }
-                  },
-                  [_vm._v("Print")]
-                )
+                _vm.is_mobile == false
+                  ? _c(
+                      "el-button",
+                      {
+                        attrs: { type: "info", icon: "el-icon-printer" },
+                        on: {
+                          click: function($event) {
+                            _vm.printer()
+                          }
+                        }
+                      },
+                      [_vm._v("Print")]
+                    )
+                  : _vm._e()
               ],
               1
             )
@@ -48704,7 +48707,7 @@ var render = function() {
         "el-dialog",
         {
           attrs: {
-            title: "Tips",
+            title: "Print Dtr",
             visible: _vm.dialogVisible,
             width: "80%",
             "before-close": _vm.handleClose
@@ -48716,18 +48719,14 @@ var render = function() {
           }
         },
         [
-          _c(
-            "object",
-            {
-              attrs: {
-                data: "/pdf",
-                type: "text/html",
-                id: "frame",
-                width: "100"
-              }
-            },
-            [_vm._v("\n\t\t\t\tAlternative Content\n\t\t")]
-          ),
+          _c("object", {
+            attrs: {
+              data: "/pdf",
+              type: "text/html",
+              id: "frame",
+              width: "100"
+            }
+          }),
           _vm._v(" "),
           _c(
             "span",
@@ -48740,18 +48739,6 @@ var render = function() {
               _c(
                 "el-button",
                 {
-                  on: {
-                    click: function($event) {
-                      _vm.dialogVisible = false
-                    }
-                  }
-                },
-                [_vm._v("Cancel")]
-              ),
-              _vm._v(" "),
-              _c(
-                "el-button",
-                {
                   attrs: { type: "primary" },
                   on: {
                     click: function($event) {
@@ -48759,7 +48746,7 @@ var render = function() {
                     }
                   }
                 },
-                [_vm._v("Confirm")]
+                [_vm._v("Close")]
               )
             ],
             1
@@ -49103,7 +49090,7 @@ exports = module.exports = __webpack_require__(6)(undefined);
 
 
 // module
-exports.push([module.i, "\n#frame {\r\n\twidth: 100%;\r\n\r\n\tmin-height: 400px;\n}\r\n", ""]);
+exports.push([module.i, "\n#frame {\r\n\twidth: 100%;\r\n\tmin-height: 80vh;\n}\r\n", ""]);
 
 // exports
 

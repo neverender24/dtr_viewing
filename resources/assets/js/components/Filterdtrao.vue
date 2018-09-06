@@ -25,7 +25,7 @@
 				<div class="form-group col-md-4">
 						<el-button-group>
 							<el-button type="primary" icon="el-icon-check" @click="getData">Display</el-button>
-							<el-button type="info" icon="el-icon-printer" @click="printer()">Print</el-button>
+							<el-button type="info" v-if="is_mobile==false" icon="el-icon-printer" @click="printer()">Print</el-button>
 						</el-button-group>
 				</div>
 				
@@ -44,16 +44,13 @@
 			</div>
 
 			<el-dialog
-				title="Tips"
+				title="Print Dtr"
 				:visible.sync="dialogVisible"
 				width="80%"
 				:before-close="handleClose">
-				<object data="/pdf" type="text/html" id="frame" width="100">
-						Alternative Content
-				</object>
+				<object data="/pdf" type="text/html" id="frame" width="100"></object>
 				<span slot="footer" class="dialog-footer">
-					<el-button @click="dialogVisible = false">Cancel</el-button>
-					<el-button type="primary" @click="dialogVisible = false">Confirm</el-button>
+					<el-button type="primary" @click="dialogVisible = false">Close</el-button>
 				</span>
 			</el-dialog>
 		</div>
@@ -61,8 +58,7 @@
 <style>
 #frame {
 	width: 100%;
-
-	min-height: 400px;
+	min-height: 80vh;
 }
 </style>
 
@@ -95,9 +91,14 @@
 				limit: '0, 31',
 				ao: 0,
 				dialogVisible: false,
+				is_mobile: false
 	    }
 		},
 		created() {
+				if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+					this.is_mobile = true
+				}
+
 				this.loading = !this.loading
 				axios.get('get-user')
 				.then(response => {
