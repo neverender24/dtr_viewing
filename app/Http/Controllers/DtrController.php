@@ -65,7 +65,7 @@ class DtrController extends Controller
             $request['searchId'] = auth()->user()->FEMPIDNO;
         }
 
-    	$dtr = User::where('FEMPIDNO', $request->searchId)->get();
+    	$dtr = Employee::where('FEMPIDNO', $request->searchId)->get();
 
     	return $dtr;
     }
