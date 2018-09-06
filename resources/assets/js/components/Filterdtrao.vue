@@ -39,10 +39,33 @@
 				</div>
 			</div>
 			<div class="row">
+				<div id="example1"></div>
 				<view-dtr v-bind:dtr="lists"></view-dtr>
 			</div>
+
+			<el-dialog
+				title="Tips"
+				:visible.sync="dialogVisible"
+				width="80%"
+				:before-close="handleClose">
+				<object data="/pdf" type="text/html" id="frame" width="100">
+						Alternative Content
+				</object>
+				<span slot="footer" class="dialog-footer">
+					<el-button @click="dialogVisible = false">Cancel</el-button>
+					<el-button type="primary" @click="dialogVisible = false">Confirm</el-button>
+				</span>
+			</el-dialog>
 		</div>
 </template>
+<style>
+#frame {
+	width: 100%;
+
+	min-height: 400px;
+}
+</style>
+
 <script>
 	import ViewDtr from "./Viewdtr.vue"
 
@@ -70,7 +93,8 @@
           label: 'Month'
         }],
 				limit: '0, 31',
-				ao: 0
+				ao: 0,
+				dialogVisible: false,
 	    }
 		},
 		created() {
@@ -84,6 +108,13 @@
 				})
 		},
 	  methods:{
+			 handleClose(done) {
+					this.$confirm('Are you sure to close this dialog?')
+						.then(_ => {
+							done();
+						})
+						.catch(_ => {});
+				},
 				getResults(year, month, id, limit) {
 						this.loading = !this.loading
 						axios.post('getDtr',{
@@ -122,7 +153,8 @@
 					})
 	  			.then(response => {
 						 this.loading = !this.loading;
-						 window.open("/pdf") 
+					// window.open("/pdf", "_blank") 
+					this.dialogVisible =  true
 	  			})
 	  		}      
 	    }
