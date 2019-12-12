@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Dtr;
-use App\Employee;
 use App\User;
+use App\Employee;
+use PHPJasper\PHPJasper;
 use Illuminate\Http\Request;
 use JasperPHP\JasperPHP as JasperPHP;
 
@@ -12,7 +13,7 @@ class DtrController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(["auth","2fa"]);
+        $this->middleware(["auth"]);
     }
 
     public function index()
@@ -72,22 +73,57 @@ class DtrController extends Controller
 
     public function printer(Request $request)
     {
-        $jasper = new JasperPHP;
-        $jasper->compile(public_path() . '/reports/report1.jrxml')->execute();
+        // $jasper = new JasperPHP;
+        // $jasper->compile(public_path() . '/reports/report1.jrxml')->execute();
 
+        // $jasper->process(
+        //     public_path() . '/reports/report1.jasper',
+        //     public_path() . '/reports/report1',
+        //     array("pdf"),
+        //     array(
+        //         "title" => $request->cats,
+        //         "fyear" => $request->searchYear,
+        //         "fmonth" => $request->searchMonth,
+        //         "taman" => $request->limit,
+        //     ),
+        //     \Config::get('database.connections.hrmd') //DB connection array
+        // )->execute();
+        require base_path() . '/vendor/autoload.php'; 
+                
+        $input = public_path() . '/reports/report1.jrxml';   
+
+        $jasper = new PHPJasper;
+        $jasper->compile($input)->execute();
+
+
+
+        $input = public_path() . '/reports/report1.jasper';   
+        $output = public_path() . '/reports/report1';
+        $options = [
+            'format' => ['pdf'],
+            'locale' => 'en',
+            'params' => array(
+                        "title" => $request->cats,
+                        "fyear" => $request->searchYear,
+                        "fmonth" => $request->searchMonth,
+                        "taman" => $request->limit,
+                    ),
+            'db_connection'=>[
+                'driver' => 'mysql',
+                'host' => '192.168.6.13',
+                'port' => '3306',
+                'database' => 'hrmddos',
+                'username' => 'itcdd',
+                'password' => '145',
+            ]
+        ];
+
+        $jasper = new PHPJasper; 
         $jasper->process(
-            public_path() . '/reports/report1.jasper',
-            public_path() . '/reports/report1',
-            array("pdf"),
-            array(
-                "title" => $request->cats,
-                "fyear" => $request->searchYear,
-                "fmonth" => $request->searchMonth,
-                "taman" => $request->limit,
-            ),
-            \Config::get('database.connections.hrmd') //DB connection array
+                $input,
+                $output,
+                $options
         )->execute();
-
     }
 
     public function open_pdf()

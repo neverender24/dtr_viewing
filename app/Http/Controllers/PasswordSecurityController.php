@@ -20,7 +20,7 @@ class PasswordSecurityController extends Controller
 
         $google2FaUrl = '';
 
-        if (count($user->passwordSecurity)) {
+        if (!empty($user->passwordSecurity)) {
             $google2Fa = new Google2FA();
             $google2Fa->setAllowInsecureCallToGoogleApis(true);
             $google2FaUrl = $google2Fa->getQRCodeGoogleUrl(
