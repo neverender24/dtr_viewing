@@ -7,7 +7,6 @@ use App\User;
 use App\Employee;
 use PHPJasper\PHPJasper;
 use Illuminate\Http\Request;
-use JasperPHP\JasperPHP as JasperPHP;
 
 class DtrController extends Controller
 {
