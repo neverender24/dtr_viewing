@@ -112,6 +112,7 @@ class DtrController extends Controller
                 'database' => 'hrmddos',
                 'username' => 'itcdd',
                 'password' => '145',
+                'jdbc_driver' => 'com.mysql.jdbc.Driver',
             ]
         ];
 
