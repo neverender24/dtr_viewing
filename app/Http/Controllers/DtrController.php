@@ -92,7 +92,7 @@ class DtrController extends Controller
         $input = public_path() . '/reports/report1.jrxml';   
 
         $jasper = new PHPJasper;
-        $jasper->compile($input)->output();
+        $jasper->compile($input)->execute();
 
         $input = public_path() . '/reports/report1.jasper';   
         $output = public_path() . '/reports';
@@ -112,7 +112,6 @@ class DtrController extends Controller
                 'database' => 'hrmddos',
                 'username' => 'itcdd',
                 'password' => '145',
-                'jdbc_driver' => 'com.mysql.jdbc.Driver',
             ]
         ];
 
@@ -121,7 +120,7 @@ class DtrController extends Controller
                 $input,
                 $output,
                 $options
-        )->output();
+        )->execute();
     }
 
     public function open_pdf()
