@@ -92,7 +92,7 @@ class DtrController extends Controller
         $input = public_path() . '/reports/report1.jrxml';   
 
         $jasper = new PHPJasper;
-        $jasper->compile($input)->execute();
+        $jasper->compile($input)->output();
 
         $input = public_path() . '/reports/report1.jasper';   
         $output = public_path() . '/reports';
@@ -121,7 +121,7 @@ class DtrController extends Controller
                 $input,
                 $output,
                 $options
-        )->execute();
+        )->output();
     }
 
     public function open_pdf()
