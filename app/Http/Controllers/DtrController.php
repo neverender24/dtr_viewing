@@ -94,19 +94,17 @@ class DtrController extends Controller
         $jasper = new PHPJasper;
         $jasper->compile($input)->execute();
 
-
-
         $input = public_path() . '/reports/report1.jasper';   
-        $output = public_path() . '/reports/report1';
+        $output = public_path() . '/reports';
         $options = [
             'format' => ['pdf'],
             'locale' => 'en',
-            'params' => array(
-                        "title" => $request->cats,
-                        "fyear" => $request->searchYear,
-                        "fmonth" => $request->searchMonth,
-                        "taman" => $request->limit,
-                    ),
+            'params' => [
+                        'title' => $request->cats,
+                        'fyear' => $request->searchYear,
+                        'fmonth' => $request->searchMonth,
+                        'taman' => $request->limit,
+            ],
             'db_connection'=>[
                 'driver' => 'mysql',
                 'host' => '192.168.6.13',
