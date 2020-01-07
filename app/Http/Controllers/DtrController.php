@@ -100,7 +100,12 @@ class DtrController extends Controller
         $options = [
             'format' => ['pdf'],
             'locale' => 'en',
-            'params' => [],
+            'params' => [
+                'title' => $request->cats,
+                'fyear' => $request->searchYear,
+                'fmonth' => $request->searchMonth,
+                'taman' => $request->limit,
+            ],
             'db_connection'=>[
                 'driver' => 'mysql',
                 'host' => '192.168.6.13',
