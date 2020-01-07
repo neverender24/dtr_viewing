@@ -89,22 +89,18 @@ class DtrController extends Controller
         // )->execute();
         require base_path() . '/vendor/autoload.php'; 
                 
-        $input = public_path() . '/reports/report1.jrxml';   
+        $inputj = public_path() . '/reports/report1.jrxml';
+        $outputj = public_path() . '/reports';   
 
         $jasper = new PHPJasper;
-        $jasper->compile($input)->execute();
+        $jasper->compile($inputj, $outputj)->execute();
 
         $input = public_path() . '/reports/report1.jasper';   
         $output = public_path() . '/reports';
         $options = [
             'format' => ['pdf'],
             'locale' => 'en',
-            'params' => [
-                        'title' => $request->cats,
-                        'fyear' => $request->searchYear,
-                        'fmonth' => $request->searchMonth,
-                        'taman' => $request->limit,
-            ],
+            'params' => [],
             'db_connection'=>[
                 'driver' => 'mysql',
                 'host' => '192.168.6.13',
