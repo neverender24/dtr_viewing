@@ -113,7 +113,7 @@ class DtrController extends Controller
                 'database' => 'hrmddos',
                 'username' => 'itcdd',
                 'password' => '145',
-            ]
+            ] 
         ];
 
         $jasper = new PHPJasper; 
