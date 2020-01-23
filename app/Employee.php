@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Employee extends Model
 {
     protected $table = "employee";
-    protected $connection = 'hrmd';
+    // protected $connection = 'hrmd';
 }

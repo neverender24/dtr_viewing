@@ -7,6 +7,7 @@ use App\User;
 use App\Employee;
 use PHPJasper\PHPJasper;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DtrController extends Controller
 {
@@ -40,8 +41,8 @@ class DtrController extends Controller
             $inject = 0;
         }
 
-    	$dtr = Dtr::where(\DB::raw("YEAR(fdate)"), '=', $request->searchYear)
-            ->where(\DB::raw("MONTH(fdate)"), '=', $request->searchMonth)
+    	$dtr = Dtr::where(DB::raw("YEAR(fdate)"), '=', $request->searchYear)
+            ->where(DB::raw("MONTH(fdate)"), '=', $request->searchMonth)
             ->where('fempidno','=',$request->searchId)
             ->offset($limit[0]-$inject)
             ->limit($limit[1]);
@@ -72,21 +73,6 @@ class DtrController extends Controller
 
     public function printer(Request $request)
     {
-        // $jasper = new JasperPHP;
-        // $jasper->compile(public_path() . '/reports/report1.jrxml')->execute();
-
-        // $jasper->process(
-        //     public_path() . '/reports/report1.jasper',
-        //     public_path() . '/reports/report1',
-        //     array("pdf"),
-        //     array(
-        //         "title" => $request->cats,
-        //         "fyear" => $request->searchYear,
-        //         "fmonth" => $request->searchMonth,
-        //         "taman" => $request->limit,
-        //     ),
-        //     \Config::get('database.connections.hrmd') //DB connection array
-        // )->execute();
         require base_path() . '/vendor/autoload.php'; 
                 
         $inputj = public_path() . '/reports/report1.jrxml';

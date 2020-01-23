@@ -43,21 +43,6 @@ return [
             'driver' => 'mysql',
             'host' => env('DB_HOST', '192.168.6.13'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'portal'),
-            'username' => env('DB_USERNAME', 'itcdd'),
-            'password' => env('DB_PASSWORD', '145'),
-            'unix_socket' => env('DB_SOCKET', ''),
-            'charset' => 'utf8mb4',
-            'collation' => 'utf8mb4_unicode_ci',
-            'prefix' => '',
-            'strict' => true,
-            'engine' => null,
-        ],
-
-        'hrmd' => [
-            'driver' => 'mysql',
-            'host' => env('DB_HOST', '192.168.6.13'),
-            'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'hrmddos'),
             'username' => env('DB_USERNAME', 'itcdd'),
             'password' => env('DB_PASSWORD', '145'),
@@ -68,6 +53,21 @@ return [
             'strict' => true,
             'engine' => null,
         ],
+
+        // 'hrmd' => [
+        //     'driver' => 'mysql',
+        //     'host' => env('DB_HOST', '192.168.6.13'),
+        //     'port' => env('DB_PORT', '3306'),
+        //     'database' => env('DB_DATABASE', 'hrmddos'),
+        //     'username' => env('DB_USERNAME', 'itcdd'),
+        //     'password' => env('DB_PASSWORD', '145'),
+        //     'unix_socket' => env('DB_SOCKET', ''),
+        //     'charset' => 'utf8mb4',
+        //     'collation' => 'utf8mb4_unicode_ci',
+        //     'prefix' => '',
+        //     'strict' => true,
+        //     'engine' => null,
+        // ],
 
         'pgsql' => [
             'driver' => 'pgsql',

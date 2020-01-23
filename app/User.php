@@ -9,7 +9,10 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
 class User extends Authenticatable
 {
     use Notifiable, EntrustUserTrait;
-    
+
+    protected $table = "employee";
+    protected $primaryKey = "recid";
+
     public $timestamps = false;
     /**
      * The attributes that are mass assignable.
