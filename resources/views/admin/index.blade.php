@@ -145,7 +145,7 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </button>
-		      <a class="navbar-brand" href="#">Welcom to Your Portal</a>
+		      <a class="navbar-brand" href="#">Welcome to Your Portal</a>
 		    </div>
 
 		    <!-- Collect the nav links, forms, and other content for toggling -->

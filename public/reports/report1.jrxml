@@ -4,6 +4,12 @@
 	<property name="ireport.zoom" value="1.4641000000000057"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<property name="ireport.jasperserver.url" value="http://192.168.6.26:8080/jasperserver/"/>
+	<property name="ireport.jasperserver.user" value="jasperadmin"/>
+	<property name="ireport.jasperserver.report.resource" value="/reports/report1_files/main_jrxml"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/report1"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.xml"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<style name="style1"/>
 	<parameter name="title" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
